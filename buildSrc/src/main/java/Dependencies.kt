@@ -26,4 +26,12 @@ object Dependencies {
         val roomCompiler = "androidx.room:room-compiler:$roomVer"
         val roomKtx = "androidx.room:room-ktx:$roomVer"
     }
+
+    object Dagger {
+        private val ver = "2.27"
+        val core = "com.google.dagger:dagger:$ver"
+        val compiler = "com.google.dagger:dagger-compiler:$ver"
+        val android = "com.google.dagger:dagger-android:$ver"
+        val processor = "com.google.dagger:dagger-android-processor:$ver"
+    }
 }

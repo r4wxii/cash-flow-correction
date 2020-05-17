@@ -35,4 +35,8 @@ dependencies {
     implementation(Dependencies.AndroidX.navigation)
     implementation(Dependencies.AndroidX.navigationUi)
     implementation(Dependencies.AndroidX.recyclerview)
+    implementation(Dependencies.Dagger.core)
+    kapt(Dependencies.Dagger.compiler)
+    implementation(Dependencies.Dagger.android)
+    kapt(Dependencies.Dagger.processor)
 }
