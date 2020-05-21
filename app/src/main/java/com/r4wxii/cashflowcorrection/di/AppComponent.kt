@@ -6,11 +6,11 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 
-@Component(modules=[AndroidInjectionModule::class])
+@Component(modules = [AndroidInjectionModule::class, ActivityModule::class])
 interface AppComponent : AndroidInjector<MainApplication> {
     @Component.Factory
     interface Factory {
-        fun create(@BindsInstance app: MainApplication) : AppComponent
+        fun create(@BindsInstance app: MainApplication): AppComponent
     }
 
     override fun inject(app: MainApplication)
