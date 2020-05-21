@@ -25,6 +25,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":data:db"))
+    implementation(project(":data:repository"))
+
     implementation(Dependencies.Kotlin.lib)
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.activityKtx)

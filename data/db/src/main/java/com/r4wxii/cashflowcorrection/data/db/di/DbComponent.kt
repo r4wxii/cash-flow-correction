@@ -1,6 +1,7 @@
 package com.r4wxii.cashflowcorrection.data.db.di
 
 import android.content.Context
+import com.r4wxii.cashflowcorrection.data.db.AccountDatabase
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -18,4 +19,6 @@ interface DbComponent {
             @BindsInstance context: Context
         ): DbComponent
     }
+
+    fun accountDataBase(): AccountDatabase
 }

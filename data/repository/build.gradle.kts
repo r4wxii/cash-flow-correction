@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -20,6 +21,11 @@ android {
 
 dependencies {
     implementation(project(":data:db"))
+    implementation(project(":domain"))
 
     implementation(Dependencies.AndroidX.core)
+    implementation(Dependencies.Dagger.core)
+    kapt(Dependencies.Dagger.compiler)
+    implementation(Dependencies.Dagger.android)
+    kapt(Dependencies.Dagger.processor)
 }
