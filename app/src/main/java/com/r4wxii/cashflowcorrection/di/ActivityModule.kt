@@ -1,6 +1,6 @@
 package com.r4wxii.cashflowcorrection.di
 
-import com.r4wxii.cashflowcorrection.view.MainActivity
+import com.r4wxii.cashflowcorrection.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

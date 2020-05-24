@@ -1,8 +1,8 @@
-package com.r4wxii.cashflowcorrection.view
+package com.r4wxii.cashflowcorrection
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.r4wxii.cashflowcorrection.R
+import com.r4wxii.cashflowcorrection.accountbook.MainFragment
 import dagger.android.AndroidInjection
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +14,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, MainFragment())
+                    .replace(R.id.container,
+                        MainFragment()
+                    )
                     .commitNow()
         }
     }
