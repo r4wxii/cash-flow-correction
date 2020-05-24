@@ -8,5 +8,5 @@ import dagger.Module
 @Module
 internal abstract class RepositoryModule {
     @Binds
-    abstract fun privideAccountRepository(impl: AccountRepositoryImpl): AccountRepository
+    abstract fun provideAccountRepository(impl: AccountRepositoryImpl): AccountRepository
 }
