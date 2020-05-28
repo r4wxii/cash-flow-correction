@@ -29,6 +29,7 @@ object Dependencies {
         val core = "com.google.dagger:dagger:$ver"
         val compiler = "com.google.dagger:dagger-compiler:$ver"
         val android = "com.google.dagger:dagger-android:$ver"
+        val androidSupport = "com.google.dagger:dagger-android-support:$ver"
         val processor = "com.google.dagger:dagger-android-processor:$ver"
     }
 }

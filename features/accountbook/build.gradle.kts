@@ -31,5 +31,6 @@ dependencies {
     implementation(Dependencies.Dagger.core)
     kapt(Dependencies.Dagger.compiler)
     implementation(Dependencies.Dagger.android)
+    implementation(Dependencies.Dagger.androidSupport)
     kapt(Dependencies.Dagger.processor)
 }

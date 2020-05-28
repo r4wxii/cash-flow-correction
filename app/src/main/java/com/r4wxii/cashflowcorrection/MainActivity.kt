@@ -1,21 +1,18 @@
 package com.r4wxii.cashflowcorrection
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.r4wxii.cashflowcorrection.accountbook.MainFragment
-import dagger.android.AndroidInjection
+import com.r4wxii.cashflowcorrection.features.accountbook.AccountBookFragment
+import dagger.android.support.DaggerAppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                     .replace(R.id.container,
-                        MainFragment()
+                        AccountBookFragment()
                     )
                     .commitNow()
         }

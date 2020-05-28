@@ -27,6 +27,7 @@ android {
 dependencies {
     implementation(project(":data:db"))
     implementation(project(":data:repository"))
+    implementation(project(":domain"))
     implementation(project(":features:accountbook"))
 
     implementation(Dependencies.Kotlin.lib)
@@ -38,5 +39,6 @@ dependencies {
     implementation(Dependencies.Dagger.core)
     kapt(Dependencies.Dagger.compiler)
     implementation(Dependencies.Dagger.android)
+    implementation(Dependencies.Dagger.androidSupport)
     kapt(Dependencies.Dagger.processor)
 }
