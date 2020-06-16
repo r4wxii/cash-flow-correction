@@ -24,7 +24,7 @@ abstract class DbModule {
             return Room.databaseBuilder(
                 context,
                 Database::class.java,
-                ""
+                "in-app-db"
             )
                 .fallbackToDestructiveMigration()
                 .build()

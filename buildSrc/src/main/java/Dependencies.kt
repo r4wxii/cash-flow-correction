@@ -17,6 +17,7 @@ object Dependencies {
         val constraintlayout = "androidx.constraintlayout:constraintlayout:1.1.3"
         val fragmentKtx = "androidx.fragment:fragment-ktx:1.2.4"
         val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+        val materialDesign = "com.google.android.material:material:1.2.0-beta01"
         val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
         private val roomVer = "2.2.5"
         val room = "androidx.room:room-runtime:$roomVer"

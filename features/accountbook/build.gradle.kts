@@ -27,6 +27,7 @@ dependencies {
     implementation(Dependencies.AndroidX.constraintlayout)
     implementation(Dependencies.AndroidX.fragmentKtx)
     implementation(Dependencies.AndroidX.lifecycle)
+    implementation(Dependencies.AndroidX.materialDesign)
     implementation(Dependencies.AndroidX.recyclerview)
     implementation(Dependencies.Dagger.core)
     kapt(Dependencies.Dagger.compiler)

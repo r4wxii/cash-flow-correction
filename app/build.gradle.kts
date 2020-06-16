@@ -34,6 +34,7 @@ dependencies {
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.activityKtx)
     implementation(Dependencies.AndroidX.core)
+    implementation(Dependencies.AndroidX.constraintlayout)
     implementation(Dependencies.AndroidX.fragmentKtx)
     implementation(Dependencies.AndroidX.lifecycle)
     implementation(Dependencies.Dagger.core)
