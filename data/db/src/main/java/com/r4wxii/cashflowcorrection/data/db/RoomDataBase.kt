@@ -1,5 +1,6 @@
 package com.r4wxii.cashflowcorrection.data.db
 
+import android.accounts.Account
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import javax.inject.Inject
@@ -13,5 +14,7 @@ class RoomDatabaseImpl @Inject constructor(
     private val db: com.r4wxii.cashflowcorrection.data.db.Database,
     private val accountDao: AccountDao
 ) : AccountDatabase {
-
+    override suspend fun insertAccount(account: AccountEntity) {
+        accountDao.insert(account)
+    }
 }

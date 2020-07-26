@@ -8,5 +8,5 @@ data class Account(
     val date: LocalDate,
     val category: String,
     val subCategory: String?,
-    val comment: String
+    val comment: String?
 )
