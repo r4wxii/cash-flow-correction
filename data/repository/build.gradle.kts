@@ -21,7 +21,7 @@ android {
 
 dependencies {
     implementation(project(":data:db"))
-    implementation(project(":domain"))
+    implementation(project(":domain:model"))
 
     implementation(Dependencies.AndroidX.core)
     implementation(Dependencies.Dagger.core)

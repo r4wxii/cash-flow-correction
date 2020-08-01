@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.r4wxii.cashflowcorrection.domain.model.Account
-import com.r4wxii.cashflowcorrection.domain.repository.AccountRepository
+import com.r4wxii.cashflowcorrection.domain.model.AccountRepository
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject

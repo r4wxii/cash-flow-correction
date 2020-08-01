@@ -1,7 +1,7 @@
 package com.r4wxii.cashflowcorrection.data.repository.di
 
 import com.r4wxii.cashflowcorrection.data.db.AccountDatabase
-import com.r4wxii.cashflowcorrection.domain.repository.AccountRepository
+import com.r4wxii.cashflowcorrection.domain.model.AccountRepository
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
