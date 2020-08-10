@@ -1,8 +1,6 @@
 package com.r4wxii.cashflowcorrection.features.accountbook
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.r4wxii.cashflowcorrection.domain.model.Account
 import com.r4wxii.cashflowcorrection.domain.model.usecase.AccountUseCase
 import kotlinx.coroutines.launch
@@ -10,6 +8,7 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 abstract class AccountBookViewModel : ViewModel() {
+    abstract val accountData: LiveData<List<Account>>
     abstract fun onClickFab()
 }
 
@@ -25,6 +24,14 @@ class AccountBookViewModelFactory @Inject constructor(
 class AccountBookViewModelImpl @Inject constructor(
     private val useCase: AccountUseCase
 ) : AccountBookViewModel() {
+    override val accountData: LiveData<List<Account>> = useCase.data.asLiveData()
+
+    init {
+        viewModelScope.launch {
+            useCase.getThisMonthAccounts()
+        }
+    }
+
     override fun onClickFab() {
         viewModelScope.launch {
             useCase.insert(

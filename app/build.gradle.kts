@@ -37,7 +37,6 @@ dependencies {
     implementation(Dependencies.AndroidX.core)
     implementation(Dependencies.AndroidX.constraintlayout)
     implementation(Dependencies.AndroidX.fragmentKtx)
-    implementation(Dependencies.AndroidX.lifecycle)
     implementation(Dependencies.Dagger.core)
     kapt(Dependencies.Dagger.compiler)
     implementation(Dependencies.Dagger.android)

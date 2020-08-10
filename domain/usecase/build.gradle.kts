@@ -22,6 +22,8 @@ android {
 dependencies {
     implementation(project(":domain:model"))
 
+    implementation(Dependencies.Kotlin.coroutines)
+
     implementation(Dependencies.AndroidX.core)
     implementation(Dependencies.Dagger.core)
     kapt(Dependencies.Dagger.compiler)

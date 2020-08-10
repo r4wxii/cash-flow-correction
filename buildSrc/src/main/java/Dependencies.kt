@@ -8,6 +8,7 @@ object Dependencies {
 
     object Kotlin {
         val lib = "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlinVersion"
+        val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
     }
 
     object AndroidX {
@@ -16,7 +17,9 @@ object Dependencies {
         val core = "androidx.core:core-ktx:1.2.0"
         val constraintlayout = "androidx.constraintlayout:constraintlayout:1.1.3"
         val fragmentKtx = "androidx.fragment:fragment-ktx:1.2.4"
-        val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+        val lifecycleVer = "2.2.0"
+        val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVer"
+        val ViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVer"
         val materialDesign = "com.google.android.material:material:1.2.0-beta01"
         val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
         private val roomVer = "2.2.5"
