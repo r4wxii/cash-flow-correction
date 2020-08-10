@@ -1,4 +1,4 @@
-package com.r4wxii.cashflowcorrection.domain.model
+package com.r4wxii.cashflowcorrection.domain.model.repository
 
 import com.r4wxii.cashflowcorrection.domain.model.Account
 

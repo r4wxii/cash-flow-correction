@@ -1,2 +1,2 @@
 rootProject.name = "cash-flow-correction"
-include(":app", ":data:db", ":data:repository", ":domain:model", ":features:accountbook")
+include(":app", ":data:db", ":data:repository", ":domain:model", ":domain:usecase", ":features:accountbook")

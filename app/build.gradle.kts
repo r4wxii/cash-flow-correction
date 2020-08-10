@@ -28,6 +28,7 @@ dependencies {
     implementation(project(":data:db"))
     implementation(project(":data:repository"))
     implementation(project(":domain:model"))
+    implementation(project(":domain:usecase"))
     implementation(project(":features:accountbook"))
 
     implementation(Dependencies.Kotlin.lib)
