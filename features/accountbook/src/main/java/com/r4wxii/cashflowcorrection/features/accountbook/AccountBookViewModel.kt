@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.r4wxii.cashflowcorrection.domain.model.Account
-import com.r4wxii.cashflowcorrection.domain.model.repository.AccountRepository
 import com.r4wxii.cashflowcorrection.domain.model.usecase.AccountUseCase
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -28,7 +27,7 @@ class AccountBookViewModelImpl @Inject constructor(
 ) : AccountBookViewModel() {
     override fun onClickFab() {
         viewModelScope.launch {
-            /*repository.insert(
+            useCase.insert(
                 Account(
                     id = 0,
                     quantity = 0,
@@ -37,7 +36,7 @@ class AccountBookViewModelImpl @Inject constructor(
                     subCategory = null,
                     comment = null
                 )
-            )*/
+            )
         }
     }
 }
