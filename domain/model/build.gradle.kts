@@ -21,4 +21,5 @@ android {
 dependencies {
     implementation(Dependencies.AndroidX.core)
     implementation(Dependencies.AndroidX.liveData)
+    implementation(Dependencies.AndroidX.recyclerview)
 }
