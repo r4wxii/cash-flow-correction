@@ -19,12 +19,13 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
-        android:name="com.r4wxii.cashflowcorrection.features.accountbook.AccountBookFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:tag="AccountBookFragment"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tool_bar" />
+        app:layout_constraintTop_toBottomOf="@id/tool_bar"
+        app:navGraph="@navigation/main_navigation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

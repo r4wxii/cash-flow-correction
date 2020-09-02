@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -37,6 +38,8 @@ dependencies {
     implementation(Dependencies.AndroidX.core)
     implementation(Dependencies.AndroidX.constraintlayout)
     implementation(Dependencies.AndroidX.fragmentKtx)
+    implementation(Dependencies.AndroidX.navigationFragment)
+    implementation(Dependencies.AndroidX.navigationUi)
     implementation(Dependencies.Dagger.core)
     kapt(Dependencies.Dagger.compiler)
     implementation(Dependencies.Dagger.android)

@@ -4,6 +4,7 @@ object Dependencies {
     object GradlePlugin {
         val android = "com.android.tools.build:gradle:3.6.3"
         val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${AndroidX.navigationVer}"
     }
 
     object Kotlin {
@@ -19,6 +20,9 @@ object Dependencies {
         val fragmentKtx = "androidx.fragment:fragment-ktx:1.2.4"
         val lifecycleVer = "2.2.0"
         val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVer"
+        val navigationVer = "2.3.0"
+        val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigationVer"
+        val navigationUi = "androidx.navigation:navigation-ui-ktx:$navigationVer"
         val ViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVer"
         val materialDesign = "com.google.android.material:material:1.2.0-beta01"
         val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"

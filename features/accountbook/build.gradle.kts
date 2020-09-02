@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -14,7 +15,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -31,9 +35,11 @@ dependencies {
     implementation(Dependencies.AndroidX.constraintlayout)
     implementation(Dependencies.AndroidX.fragmentKtx)
     implementation(Dependencies.AndroidX.liveData)
-    implementation(Dependencies.AndroidX.ViewModel)
     implementation(Dependencies.AndroidX.materialDesign)
+    implementation(Dependencies.AndroidX.navigationFragment)
+    implementation(Dependencies.AndroidX.navigationUi)
     implementation(Dependencies.AndroidX.recyclerview)
+    implementation(Dependencies.AndroidX.ViewModel)
     implementation(Dependencies.Dagger.core)
     kapt(Dependencies.Dagger.compiler)
     implementation(Dependencies.Dagger.android)
