@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.r4wxii.cashflowcorrection.features.accountbook.databinding.FragmentAccountBookBinding
 import dagger.android.HasAndroidInjector
@@ -13,7 +15,7 @@ import javax.inject.Inject
 class AccountBookFragment(layoutId: Int = R.layout.fragment_account_book) : DaggerFragment(layoutId), HasAndroidInjector {
     @Inject
     lateinit var viewModelFactory: AccountBookViewModelFactory
-    private val viewModel: AccountBookViewModel by viewModels { viewModelFactory }
+    private val viewModel: AccountBookViewModel by navGraphViewModels(R.id.account_book_navigation) { viewModelFactory }
 
     private val accountListAdapter = AccountListAdapter()
 
@@ -44,5 +46,9 @@ class AccountBookFragment(layoutId: Int = R.layout.fragment_account_book) : Dagg
         viewModel.accountData.observe(viewLifecycleOwner, Observer {
             accountListAdapter.submitList(it)
         })
+
+        binding.fab.setOnClickListener {
+            findNavController().navigate(AccountBookFragmentDirections.actAccountBookToRecordAccount())
+        }
     }
 }

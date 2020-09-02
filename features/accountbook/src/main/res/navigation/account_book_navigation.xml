@@ -8,5 +8,14 @@
         android:id="@+id/account_book"
         android:name="com.r4wxii.cashflowcorrection.features.accountbook.AccountBookFragment"
         android:label="AccountBook">
+        <action
+            android:id="@+id/act_account_book_to_record_account"
+            app:destination="@id/record_account" />
     </fragment>
+
+    <dialog
+        android:id="@+id/record_account"
+        android:name="com.r4wxii.cashflowcorrection.features.accountbook.RecordAccountDialog"
+        android:label="record_account" />
+
 </navigation>
