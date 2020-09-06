@@ -9,6 +9,11 @@ import javax.inject.Inject
 
 abstract class AccountBookViewModel : ViewModel() {
     abstract val accountData: LiveData<List<Account>>
+    abstract val date: MutableLiveData<LocalDate>
+    abstract val quantity: MutableLiveData<String>
+    abstract val category: MutableLiveData<String>
+    abstract val subCategory: MutableLiveData<String>
+    abstract val comment: MutableLiveData<String>
     abstract fun onClickFab()
 }
 
@@ -25,6 +30,11 @@ class AccountBookViewModelImpl @Inject constructor(
     private val useCase: AccountUseCase
 ) : AccountBookViewModel() {
     override val accountData: LiveData<List<Account>> = useCase.data.asLiveData()
+    override val date = MutableLiveData<LocalDate>()
+    override val quantity = MutableLiveData<String>()
+    override val category = MutableLiveData<String>()
+    override val subCategory = MutableLiveData<String>()
+    override val comment = MutableLiveData<String>()
 
     init {
         viewModelScope.launch {

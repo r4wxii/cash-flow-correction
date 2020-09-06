@@ -1,23 +1,18 @@
 package com.r4wxii.cashflowcorrection.features.accountbook
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.navigation.navGraphViewModels
-import javax.inject.Inject
+import com.r4wxii.cashflowcorrection.features.accountbook.databinding.DialogRecordAccountBinding
+import com.r4wxii.cashflowcorrection.features.accountbook.databinding.FragmentAccountBookBinding
 
-class RecordAccountDialog : DialogFragment() {
+class RecordAccountDialog : Fragment(R.layout.dialog_record_account) {
     private val viewModel: AccountBookViewModel by navGraphViewModels(R.id.account_book_navigation)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        viewModel.onClickFab()
-        return inflater.inflate(R.layout.dialog_record_account, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = DialogRecordAccountBinding.bind(view)
+        binding.viewModel = viewModel
     }
 }

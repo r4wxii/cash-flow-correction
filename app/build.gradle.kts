@@ -26,6 +26,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":component"))
     implementation(project(":data:db"))
     implementation(project(":data:repository"))
     implementation(project(":domain:model"))
