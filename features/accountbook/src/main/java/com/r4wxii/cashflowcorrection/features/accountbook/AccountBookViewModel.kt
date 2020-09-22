@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 abstract class AccountBookViewModel : ViewModel() {
     abstract val accountData: LiveData<List<Account>>
-    abstract val date: MutableLiveData<LocalDate>
+    abstract val date: MutableLiveData<String>
     abstract val quantity: MutableLiveData<String>
     abstract val category: MutableLiveData<String>
     abstract val subCategory: MutableLiveData<String>
@@ -30,7 +30,7 @@ class AccountBookViewModelImpl @Inject constructor(
     private val useCase: AccountUseCase
 ) : AccountBookViewModel() {
     override val accountData: LiveData<List<Account>> = useCase.data.asLiveData()
-    override val date = MutableLiveData<LocalDate>()
+    override val date = MutableLiveData<String>()
     override val quantity = MutableLiveData<String>()
     override val category = MutableLiveData<String>()
     override val subCategory = MutableLiveData<String>()
