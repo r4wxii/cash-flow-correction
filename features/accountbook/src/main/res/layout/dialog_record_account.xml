@@ -40,9 +40,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:hint="金額"
-            android:textColorHint="@color/design_default_color_secondary"
-            app:boxStrokeColor="@color/design_default_color_secondary"
-            app:hintTextColor="@color/design_default_color_secondary"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/date_button">
 
@@ -59,9 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:hint="カテゴリ"
-            android:textColorHint="@color/design_default_color_secondary"
-            app:boxStrokeColor="@color/design_default_color_secondary"
-            app:hintTextColor="@color/design_default_color_secondary"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/quantity">
 
@@ -78,9 +72,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:hint="サブカテゴリ"
-            android:textColorHint="@color/design_default_color_secondary"
-            app:boxStrokeColor="@color/design_default_color_secondary"
-            app:hintTextColor="@color/design_default_color_secondary"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/category">
 
@@ -97,9 +88,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:hint="コメント"
-            android:textColorHint="@color/design_default_color_secondary"
-            app:boxStrokeColor="@color/design_default_color_secondary"
-            app:hintTextColor="@color/design_default_color_secondary"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sub_category">
 
