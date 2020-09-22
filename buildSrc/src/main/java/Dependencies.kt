@@ -24,7 +24,7 @@ object Dependencies {
         val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigationVer"
         val navigationUi = "androidx.navigation:navigation-ui-ktx:$navigationVer"
         val ViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVer"
-        val materialDesign = "com.google.android.material:material:1.2.0-beta01"
+        val materialDesign = "com.google.android.material:material:1.2.0"
         val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
         private val roomVer = "2.2.5"
         val room = "androidx.room:room-runtime:$roomVer"

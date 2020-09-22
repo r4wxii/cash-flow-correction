@@ -28,6 +28,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":component"))
     implementation(project(":domain:model"))
 
     implementation(Dependencies.AndroidX.appCompat)
