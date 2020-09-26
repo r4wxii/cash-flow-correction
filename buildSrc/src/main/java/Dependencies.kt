@@ -2,7 +2,7 @@ import Versions.kotlinVersion
 
 object Dependencies {
     object GradlePlugin {
-        val android = "com.android.tools.build:gradle:3.6.3"
+        val android = "com.android.tools.build:gradle:4.0.1"
         val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${AndroidX.navigationVer}"
     }
