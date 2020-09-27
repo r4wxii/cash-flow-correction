@@ -13,7 +13,7 @@
             app:destination="@id/record_account" />
     </fragment>
 
-    <fragment
+    <dialog
         android:id="@+id/record_account"
         android:name="com.r4wxii.cashflowcorrection.features.accountbook.RecordAccountDialog"
         android:label="record_account" />

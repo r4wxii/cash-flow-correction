@@ -14,6 +14,17 @@
         android:layout_height="match_parent"
         android:background="@color/design_default_color_background">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_close_24"
+            app:titleTextColor="@color/design_default_color_background" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/date"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -22,7 +33,7 @@
             android:layout_marginStart="12dp"
             android:hint="日付"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/tool_bar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/date_form"
