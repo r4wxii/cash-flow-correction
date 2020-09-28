@@ -31,6 +31,8 @@ dependencies {
     implementation(project(":component"))
     implementation(project(":domain:model"))
 
+    implementation(Dependencies.Kotlin.coroutines)
+
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.core)
     implementation(Dependencies.AndroidX.constraintlayout)

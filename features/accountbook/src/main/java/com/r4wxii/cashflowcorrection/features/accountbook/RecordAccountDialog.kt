@@ -6,11 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.asFlow
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.r4wxii.cashflowcorrection.features.accountbook.databinding.DialogRecordAccountBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 
 class RecordAccountDialog : DialogFragment() {
     private val viewModel: AccountBookViewModel by navGraphViewModels(R.id.account_book_navigation)
@@ -44,6 +49,17 @@ class RecordAccountDialog : DialogFragment() {
         binding.viewModel = viewModel
 
         binding.toolBar.setupWithNavController(findNavController())
+        binding.toolBar.inflateMenu(R.menu.dialog_menu_item)
+        binding.toolBar.setOnMenuItemClickListener {
+            if (it.itemId == R.id.menu_done) {
+                println("done")
+            }
+            true
+        }
+
+        viewModel.recordEnabled.observe(viewLifecycleOwner) {
+            binding.toolBar.menu.findItem(R.id.menu_done).isEnabled = it
+        }
 
         datePickerBuilder.setSelection(MaterialDatePicker.todayInUtcMilliseconds())
         val datePicker = datePickerBuilder.build()
