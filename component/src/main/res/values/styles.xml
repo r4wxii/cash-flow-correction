@@ -1,15 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="toolbarStyle">@style/AppTheme.ToolBar</item>
+        <item name="android:actionMenuTextColor">@color/tool_bar_menu</item>
     </style>
     
     <style name="FullScreenDialog" parent="AppTheme">
         <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="AppTheme.ToolBar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:titleTextColor">@color/design_default_color_background</item>
+        <item name="titleTextAppearance">@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse</item>
     </style>
 
 </resources>

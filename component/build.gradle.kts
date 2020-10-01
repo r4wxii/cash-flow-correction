@@ -23,4 +23,5 @@ android {
 
 dependencies {
     implementation(Dependencies.AndroidX.appCompat)
+    implementation(Dependencies.AndroidX.materialDesign)
 }

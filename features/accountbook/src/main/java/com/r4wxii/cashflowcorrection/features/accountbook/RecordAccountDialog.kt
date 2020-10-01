@@ -49,7 +49,6 @@ class RecordAccountDialog : DialogFragment() {
         binding.viewModel = viewModel
 
         binding.toolBar.setupWithNavController(findNavController())
-        binding.toolBar.inflateMenu(R.menu.dialog_menu_item)
         binding.toolBar.setOnMenuItemClickListener {
             if (it.itemId == R.id.menu_done) {
                 println("done")

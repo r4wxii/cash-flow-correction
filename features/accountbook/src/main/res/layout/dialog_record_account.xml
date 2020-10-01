@@ -22,6 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/dialog_menu_item"
             app:navigationIcon="@drawable/ic_close_24"
             app:titleTextColor="@color/design_default_color_background" />
 
