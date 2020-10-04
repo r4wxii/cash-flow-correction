@@ -16,6 +16,8 @@ import com.r4wxii.cashflowcorrection.features.accountbook.databinding.DialogReco
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import java.time.*
+import java.time.format.DateTimeFormatter
 
 class RecordAccountDialog : DialogFragment() {
     private val viewModel: AccountBookViewModel by navGraphViewModels(R.id.account_book_navigation)
@@ -51,7 +53,8 @@ class RecordAccountDialog : DialogFragment() {
         binding.toolBar.setupWithNavController(findNavController())
         binding.toolBar.setOnMenuItemClickListener {
             if (it.itemId == R.id.menu_done) {
-                println("done")
+                viewModel.saveAccount()
+                findNavController().popBackStack()
             }
             true
         }
@@ -63,7 +66,11 @@ class RecordAccountDialog : DialogFragment() {
         datePickerBuilder.setSelection(MaterialDatePicker.todayInUtcMilliseconds())
         val datePicker = datePickerBuilder.build()
         datePicker.addOnPositiveButtonClickListener {
-            binding.dateForm.setText(it.toString())
+            binding.dateForm.setText(
+                LocalDateTime.ofInstant(Instant.ofEpochMilli(it), ZoneId.systemDefault()).format(
+                    DateTimeFormatter.ISO_LOCAL_DATE
+                )
+            )
         }
 
         binding.dateForm.inputType = InputType.TYPE_NULL

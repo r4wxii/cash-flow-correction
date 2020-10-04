@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 abstract class AccountBookViewModel : ViewModel() {
@@ -18,6 +19,8 @@ abstract class AccountBookViewModel : ViewModel() {
     abstract val subCategory: MutableLiveData<String>
     abstract val comment: MutableLiveData<String>
     abstract val recordEnabled: LiveData<Boolean>
+
+    abstract fun saveAccount()
 }
 
 class AccountBookViewModelFactory @Inject constructor(
@@ -38,7 +41,7 @@ class AccountBookViewModelImpl @Inject constructor(
     override val category = MutableLiveData<String>()
     override val subCategory = MutableLiveData<String>()
     override val comment = MutableLiveData<String>()
-    override val recordEnabled = liveData (context = viewModelScope.coroutineContext) {
+    override val recordEnabled = liveData(context = viewModelScope.coroutineContext) {
         emit(false)
 
         combine(
@@ -53,6 +56,20 @@ class AccountBookViewModelImpl @Inject constructor(
     init {
         viewModelScope.launch {
             useCase.getThisMonthAccounts()
+        }
+    }
+
+    override fun saveAccount() {
+        viewModelScope.launch {
+            useCase.insert(
+                Account.createNewItem(
+                    quantity.value?.toInt() ?: 0,
+                    LocalDate.parse(date.value),
+                    category.value.orEmpty(),
+                    subCategory.value,
+                    comment.value
+                )
+            )
         }
     }
 }
