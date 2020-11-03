@@ -16,5 +16,5 @@ class AccountRepositoryImpl @Inject constructor(
     override suspend fun getThisMonthAccounts(): Flow<List<Account>>  = database.getThisMonthAccount().map { list -> list.map { account -> account.toAccount() }}
 }
 
-private fun AccountEntity.toAccount(): Account = Account.valueOf(id, quantity, date, category, subCategory, comment)
+private fun AccountEntity.toAccount(): Account = Account(id, quantity, date, category, subCategory, comment)
 private fun Account.toEntity(): AccountEntity = AccountEntity(id, quantity, date, category, subCategory, comment)

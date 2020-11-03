@@ -8,7 +8,7 @@ import java.time.LocalDate
 @Entity(tableName = "account")
 @TypeConverters(DateConverter::class)
 data class AccountEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val quantity: Int,
     val date: LocalDate,
     val category: String,

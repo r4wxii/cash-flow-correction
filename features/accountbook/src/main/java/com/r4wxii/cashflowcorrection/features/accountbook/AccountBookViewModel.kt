@@ -62,7 +62,8 @@ class AccountBookViewModelImpl @Inject constructor(
     override fun saveAccount() {
         viewModelScope.launch {
             useCase.insert(
-                Account.createNewItem(
+                Account(
+                    0,
                     quantity.value?.toInt() ?: 0,
                     LocalDate.parse(date.value),
                     category.value.orEmpty(),
