@@ -9,7 +9,7 @@ object Dependencies {
 
     object Kotlin {
         val lib = "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlinVersion"
-        val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
+        val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.0"
     }
 
     object AndroidX {
