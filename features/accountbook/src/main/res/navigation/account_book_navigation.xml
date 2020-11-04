@@ -16,6 +16,11 @@
     <dialog
         android:id="@+id/record_account"
         android:name="com.r4wxii.cashflowcorrection.features.accountbook.RecordAccountDialog"
-        android:label="record_account" />
+        android:label="record_account" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </dialog>
 
 </navigation>

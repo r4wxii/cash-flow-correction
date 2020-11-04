@@ -2,6 +2,7 @@ package com.r4wxii.cashflowcorrection.di
 
 import com.r4wxii.cashflowcorrection.MainActivity
 import com.r4wxii.cashflowcorrection.features.accountbook.AccountBookFragment
+import com.r4wxii.cashflowcorrection.features.accountbook.RecordAccountDialog
 import com.r4wxii.cashflowcorrection.features.accountbook.di.AccountBookModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -13,4 +14,7 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector(modules = [AccountBookModule::class])
     abstract fun contributeAccountBookFragment(): AccountBookFragment
+
+    @ContributesAndroidInjector(modules = [AccountBookModule::class])
+    abstract fun contributeRecordAccountDialog(): RecordAccountDialog
 }

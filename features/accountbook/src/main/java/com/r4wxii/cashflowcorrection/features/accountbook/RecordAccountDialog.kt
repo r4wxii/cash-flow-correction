@@ -6,22 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.asFlow
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.r4wxii.cashflowcorrection.features.accountbook.databinding.DialogRecordAccountBinding
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.launch
+import dagger.android.HasAndroidInjector
+import dagger.android.support.DaggerDialogFragment
 import java.time.*
 import java.time.format.DateTimeFormatter
+import javax.inject.Inject
 
-class RecordAccountDialog : DialogFragment() {
-    private val viewModel: AccountBookViewModel by navGraphViewModels(R.id.account_book_navigation)
+class RecordAccountDialog : DaggerDialogFragment() {
+    @Inject
+    lateinit var viewModelFactory: RecordAccountViewModelFactory
+    private val viewModel: RecordAccountViewModel by viewModels { viewModelFactory }
     private val datePickerBuilder = MaterialDatePicker.Builder.datePicker()
+    private val navArgs: RecordAccountDialogArgs by navArgs()
 
     override fun onStart() {
         super.onStart()

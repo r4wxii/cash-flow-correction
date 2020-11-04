@@ -4,5 +4,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface AccountDatabase {
     suspend fun insertAccount(account: AccountEntity)
+    suspend fun getAccount(id: Int): AccountEntity
     suspend fun getThisMonthAccount(): Flow<List<AccountEntity>>
 }
