@@ -39,5 +39,8 @@ object Dependencies {
         val android = "com.google.dagger:dagger-android:$ver"
         val androidSupport = "com.google.dagger:dagger-android-support:$ver"
         val processor = "com.google.dagger:dagger-android-processor:$ver"
+        private val hiltVer = "1.0.0-alpha03"
+        val hilt = "com.google.dagger:hilt-android:$hiltVer"
+        val hiltCompiler = "com.google.dagger:hilt-android-compiler:$hiltVer"
     }
 }
