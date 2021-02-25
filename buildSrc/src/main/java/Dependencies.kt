@@ -5,6 +5,7 @@ object Dependencies {
         val android = "com.android.tools.build:gradle:4.1.0"
         val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${AndroidX.navigationVer}"
+        val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.hiltVer}"
     }
 
     object Kotlin {
@@ -39,8 +40,9 @@ object Dependencies {
         val android = "com.google.dagger:dagger-android:$ver"
         val androidSupport = "com.google.dagger:dagger-android-support:$ver"
         val processor = "com.google.dagger:dagger-android-processor:$ver"
-        private val hiltVer = "1.0.0-alpha03"
+        val hiltVer = "2.32-alpha"
         val hilt = "com.google.dagger:hilt-android:$hiltVer"
         val hiltCompiler = "com.google.dagger:hilt-android-compiler:$hiltVer"
+        val hiltNavFragment = "androidx.hilt:hilt-navigation-fragment:1.0.0-alpha03"
     }
 }
