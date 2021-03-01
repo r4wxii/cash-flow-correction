@@ -49,6 +49,8 @@ class RecordAccountDialog : DialogFragment() {
         val binding = DialogRecordAccountBinding.bind(view)
         binding.viewModel = viewModel
 
+        viewModel.getAccount(navArgs.id)
+
         binding.toolBar.setupWithNavController(findNavController())
         binding.toolBar.setOnMenuItemClickListener {
             if (it.itemId == R.id.menu_done) {

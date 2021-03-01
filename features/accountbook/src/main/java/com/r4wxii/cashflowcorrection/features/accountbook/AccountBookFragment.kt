@@ -14,7 +14,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class AccountBookFragment(layoutId: Int = R.layout.fragment_account_book) : Fragment(layoutId) {
     private val viewModel: AccountBookViewModel by viewModels()
 
-    private val accountListAdapter = AccountListAdapter()
+    private val accountListAdapter = AccountListAdapter { id ->
+        findNavController().navigate(
+            AccountBookFragmentDirections.actAccountBookToRecordAccount(id)
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
