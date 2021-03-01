@@ -1,10 +1,11 @@
 package com.r4wxii.cashflowcorrection
 
 import android.os.Bundle
-import com.r4wxii.cashflowcorrection.features.accountbook.AccountBookFragment
-import dagger.android.support.DaggerAppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : DaggerAppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -10,10 +11,12 @@ android {
     defaultConfig {
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas",
-                    "room.incremental" to "true",
-                    "room.expandProjection" to "true"
+                arguments(
+                    mapOf(
+                        "room.schemaLocation" to "$projectDir/schemas",
+                        "room.incremental" to "true",
+                        "room.expandProjection" to "true"
+                    )
                 )
             }
         }
@@ -44,4 +47,6 @@ dependencies {
     kapt(Dependencies.Dagger.compiler)
     implementation(Dependencies.Dagger.android)
     kapt(Dependencies.Dagger.processor)
+    implementation(Dependencies.Dagger.hilt)
+    kapt(Dependencies.Dagger.hiltCompiler)
 }

@@ -2,20 +2,17 @@ package com.r4wxii.cashflowcorrection.features.accountbook
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.r4wxii.cashflowcorrection.features.accountbook.databinding.FragmentAccountBookBinding
-import dagger.android.HasAndroidInjector
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class AccountBookFragment(layoutId: Int = R.layout.fragment_account_book) : DaggerFragment(layoutId) {
-    @Inject
-    lateinit var viewModelFactory: AccountBookViewModelFactory
-    private val viewModel: AccountBookViewModel by navGraphViewModels(R.id.account_book_navigation) { viewModelFactory }
+@AndroidEntryPoint
+class AccountBookFragment(layoutId: Int = R.layout.fragment_account_book) : Fragment(layoutId) {
+    private val viewModel: AccountBookViewModel by viewModels()
 
     private val accountListAdapter = AccountListAdapter()
 
@@ -31,7 +28,7 @@ class AccountBookFragment(layoutId: Int = R.layout.fragment_account_book) : Dagg
         sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
 
         binding.filterButton.setOnClickListener {
-            when(sheetBehavior.state) {
+            when (sheetBehavior.state) {
                 BottomSheetBehavior.STATE_EXPANDED -> {
                     sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                     binding.fab.hide()

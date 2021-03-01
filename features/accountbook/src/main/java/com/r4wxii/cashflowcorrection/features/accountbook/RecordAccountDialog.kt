@@ -12,16 +12,13 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.r4wxii.cashflowcorrection.features.accountbook.databinding.DialogRecordAccountBinding
-import dagger.android.HasAndroidInjector
-import dagger.android.support.DaggerDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.*
 import java.time.format.DateTimeFormatter
-import javax.inject.Inject
 
-class RecordAccountDialog : DaggerDialogFragment() {
-    @Inject
-    lateinit var viewModelFactory: RecordAccountViewModelFactory
-    private val viewModel: RecordAccountViewModel by viewModels { viewModelFactory }
+@AndroidEntryPoint
+class RecordAccountDialog : DialogFragment() {
+    private val viewModel: RecordAccountViewModel by viewModels()
     private val datePickerBuilder = MaterialDatePicker.Builder.datePicker()
     private val navArgs: RecordAccountDialogArgs by navArgs()
 

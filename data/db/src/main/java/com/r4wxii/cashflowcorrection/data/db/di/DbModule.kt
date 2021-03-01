@@ -1,25 +1,30 @@
 package com.r4wxii.cashflowcorrection.data.db.di
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.r4wxii.cashflowcorrection.data.db.*
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 abstract class DbModule {
     @Binds
+    @Singleton
     abstract fun provideAccountDatabase(impl: RoomDatabaseImpl): AccountDatabase
 
-    companion object {
-        @Singleton
+    @Module
+    @InstallIn(SingletonComponent::class)
+    internal object RoomDatabaseModule {
         @Provides
+        @Singleton
         fun provideRoomDatabase(
-            context: Context
+            @ApplicationContext context: Context
         ): Database {
             return Room.databaseBuilder(
                 context,
@@ -31,6 +36,7 @@ abstract class DbModule {
         }
 
         @Provides
+        @Singleton
         fun provideAccountDao(database: Database): AccountDao {
             return database.accountDao()
         }
