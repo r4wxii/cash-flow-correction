@@ -9,7 +9,7 @@ interface AccountDao {
     suspend fun insert(account: AccountEntity)
 
     @Query("SELECT * FROM account WHERE id = :id")
-    suspend fun getAccount(id: Int): AccountEntity
+    suspend fun getAccount(id: Int): AccountEntity?
 
     @Query("SELECT * FROM account WHERE date(date)>=date(CURRENT_DATE, 'start of month')")
     fun getThisMonthAccounts(): Flow<List<AccountEntity>>

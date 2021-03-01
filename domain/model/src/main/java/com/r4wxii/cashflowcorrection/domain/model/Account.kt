@@ -12,6 +12,8 @@ data class Account constructor(
     val comment: String?
 ) {
     companion object {
+        fun empty(): Account = Account(0, 0, LocalDate.now(), "", null, null)
+
         val diffCallback = object : DiffUtil.ItemCallback<Account>() {
             override fun areItemsTheSame(oldItem: Account, newItem: Account): Boolean =
                 oldItem.id == newItem.id

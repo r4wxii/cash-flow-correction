@@ -13,7 +13,7 @@ class AccountRepositoryImpl @Inject constructor(
 ) : AccountRepository {
     override suspend fun insert(account: Account) = database.insertAccount(account.toEntity())
 
-    override suspend fun getAccount(id: Int): Account = database.getAccount(id).toAccount()
+    override suspend fun getAccount(id: Int): Account = database.getAccount(id)?.toAccount() ?: Account.empty()
 
     override suspend fun getThisMonthAccounts(): Flow<List<Account>>  = database.getThisMonthAccount().map { list -> list.map { account -> account.toAccount() }}
 }

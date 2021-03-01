@@ -15,8 +15,7 @@ import javax.inject.Inject
 class RecordAccountViewModel @Inject constructor(
     private val useCase: AccountUseCase
 ) : ViewModel() {
-    private val account = MutableStateFlow(Account(0, 0, LocalDate.now(), "", null, null))
-    val date = MutableLiveData<String>()
+    private val account = MutableStateFlow(Account.empty())
     val quantity = MutableLiveData<String>()
     val category = MutableLiveData<String>()
     val subCategory = MutableLiveData<String>()

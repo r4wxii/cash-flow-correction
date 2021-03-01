@@ -16,7 +16,7 @@ class RoomDatabaseImpl @Inject constructor(
 ) : AccountDatabase {
     override suspend fun insertAccount(account: AccountEntity) = accountDao.insert(account)
 
-    override suspend fun getAccount(id: Int): AccountEntity = accountDao.getAccount(id)
+    override suspend fun getAccount(id: Int): AccountEntity? = accountDao.getAccount(id)
 
     override suspend fun getThisMonthAccount(): Flow<List<AccountEntity>> = accountDao.getThisMonthAccounts()
 }
