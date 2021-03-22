@@ -17,7 +17,7 @@ import java.time.*
 import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
-class RecordAccountDialog : DialogFragment() {
+class RecordAccountDialog : DialogFragment(R.layout.dialog_record_account) {
     private val viewModel: RecordAccountViewModel by viewModels()
     private val datePickerBuilder = MaterialDatePicker.Builder.datePicker()
     private val navArgs: RecordAccountDialogArgs by navArgs()
@@ -34,14 +34,6 @@ class RecordAccountDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.FullScreenDialog)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.dialog_record_account, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
