@@ -4,70 +4,67 @@ import androidx.lifecycle.*
 import com.r4wxii.cashflowcorrection.domain.model.Account
 import com.r4wxii.cashflowcorrection.domain.model.usecase.AccountUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
+
+sealed class RecordAccountState {
+    object Init : RecordAccountState()
+    data class Fetched(val account: Account) : RecordAccountState()
+    object RecordableData : RecordAccountState()
+}
+
+sealed class RecordAccountEvent {
+    class InputDate(val date: String) : RecordAccountEvent()
+    class InputQuantity(val quantity: String) : RecordAccountEvent()
+    class InputCategory(val category: String) : RecordAccountEvent()
+    class InputSubCategory(val subCategory: String) : RecordAccountEvent()
+    class InputComment(val comment: String) : RecordAccountEvent()
+}
 
 @HiltViewModel
 class RecordAccountViewModel @Inject constructor(
     private val useCase: AccountUseCase
 ) : ViewModel() {
-    private val account = MutableStateFlow(Account.empty())
-    val date = MutableLiveData<String?>()
-    val quantity = MutableLiveData<String>()
-    val category = MutableLiveData<String>()
-    val subCategory = MutableLiveData<String?>()
-    val comment = MutableLiveData<String>()
-    val recordEnabled = liveData(context = viewModelScope.coroutineContext) {
-        emit(false)
+    private val _state: MutableStateFlow<RecordAccountState> =
+        MutableStateFlow(RecordAccountState.Init)
+    val state: LiveData<RecordAccountState> = _state.asLiveData()
+    val account = MutableStateFlow(Account.empty())
 
-        combine(
-            date.asFlow(),
-            quantity.asFlow(),
-            category.asFlow()
-        ) { date, quantity, category ->
-            !date.isNullOrBlank() && quantity.isNotBlank() && category.isNotBlank()
-        }.collect { emit(it) }
-    }
-
-    init {
-        viewModelScope.launch {
-            date.asFlow().collect {
-                account.value = account.value.copy(date = LocalDate.parse(it))
+    fun handleEvent(event: RecordAccountEvent) {
+        when (event) {
+            is RecordAccountEvent.InputDate -> {
+                account.value = account.value.copy(date = LocalDate.parse(event.date))
             }
-            quantity.asFlow().collect {
-                account.value = account.value.copy(quantity = it.toInt())
+            is RecordAccountEvent.InputQuantity -> {
+                account.value = account.value.copy(quantity = event.quantity.toIntOrNull() ?: 0)
             }
-            category.asFlow().collect {
-                account.value = account.value.copy(category = it)
+            is RecordAccountEvent.InputCategory -> {
+                account.value = account.value.copy(category = event.category)
             }
-            subCategory.asFlow().collect {
-                account.value = account.value.copy(subCategory = it)
+            is RecordAccountEvent.InputSubCategory -> {
+                account.value = account.value.copy(subCategory = event.subCategory)
             }
-            comment.asFlow().collect {
-                account.value = account.value.copy(comment = it)
+            is RecordAccountEvent.InputComment -> {
+                account.value = account.value.copy(comment = event.comment)
             }
         }
     }
 
     fun getAccount(id: Int) {
-        account.value = account.value.copy(id = id)
+        if (id < 1) return
         viewModelScope.launch {
             val account = useCase.getAccount(id)
-            date.value = account.date.toString()
-            quantity.value = account.quantity.toString()
-            category.value = account.category
-            subCategory.value = account.subCategory
-            comment.value = account.comment
+            _state.value = RecordAccountState.Fetched(account)
         }
     }
 
     fun saveAccount() {
-        viewModelScope.launch {
-            useCase.insert(account.value)
+        if (_state.value is RecordAccountState.RecordableData) {
+            viewModelScope.launch {
+                useCase.insert(account.value)
+            }
         }
     }
 }

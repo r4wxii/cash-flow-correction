@@ -5,6 +5,7 @@ import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -52,8 +53,18 @@ class RecordAccountDialog : DialogFragment(R.layout.dialog_record_account) {
             true
         }
 
-        viewModel.recordEnabled.observe(viewLifecycleOwner) {
-            binding.toolBar.menu.findItem(R.id.menu_done).isEnabled = it
+        viewModel.state.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is RecordAccountState.Init -> binding.toolBar.menu.findItem(R.id.menu_done).isEnabled = false
+                is RecordAccountState.Fetched -> {
+                    binding.dateForm.setText(state.account.date.toString())
+                    binding.quantityForm.setText(state.account.quantity.toString())
+                    binding.categoryForm.setText(state.account.category)
+                    binding.subCategoryForm.setText(state.account.subCategory)
+                    binding.commentForm.setText(state.account.comment)
+                }
+                is RecordAccountState.RecordableData -> binding.toolBar.menu.findItem(R.id.menu_done).isEnabled = true
+            }
         }
 
         datePickerBuilder.setSelection(MaterialDatePicker.todayInUtcMilliseconds())
@@ -75,5 +86,21 @@ class RecordAccountDialog : DialogFragment(R.layout.dialog_record_account) {
                 datePicker.show(childFragmentManager, "datePicker")
             }
         }
+        binding.dateForm.addTextChangedListener(afterTextChanged = {
+            viewModel.handleEvent(RecordAccountEvent.InputDate(it.toString()))
+        })
+        binding.quantityForm.inputType = InputType.TYPE_CLASS_NUMBER
+        binding.quantityForm.addTextChangedListener(afterTextChanged = {
+            viewModel.handleEvent(RecordAccountEvent.InputQuantity(it.toString()))
+        })
+        binding.categoryForm.addTextChangedListener(afterTextChanged = {
+            viewModel.handleEvent(RecordAccountEvent.InputCategory(it.toString()))
+        })
+        binding.subCategoryForm.addTextChangedListener(afterTextChanged = {
+            viewModel.handleEvent(RecordAccountEvent.InputSubCategory(it.toString()))
+        })
+        binding.commentForm.addTextChangedListener(afterTextChanged = {
+            viewModel.handleEvent(RecordAccountEvent.InputComment(it.toString()))
+        })
     }
 }
