@@ -6,17 +6,20 @@ import com.r4wxii.cashflowcorrection.domain.model.usecase.AccountUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.temporal.TemporalAccessor
 import javax.inject.Inject
 
 sealed class RecordAccountState {
     object Init : RecordAccountState()
-    data class Fetched(val account: Account) : RecordAccountState()
-    object RecordableData : RecordAccountState()
+    data class RecordableData(val account: Account, val isRecordable: Boolean) : RecordAccountState()
 }
 
 sealed class RecordAccountEvent {
-    class InputDate(val date: String) : RecordAccountEvent()
+    class InputDate(val date: Long) : RecordAccountEvent()
     class InputQuantity(val quantity: String) : RecordAccountEvent()
     class InputCategory(val category: String) : RecordAccountEvent()
     class InputSubCategory(val subCategory: String) : RecordAccountEvent()
@@ -32,10 +35,18 @@ class RecordAccountViewModel @Inject constructor(
     val state: LiveData<RecordAccountState> = _state.asLiveData()
     val account = MutableStateFlow(Account.empty())
 
+    init {
+        viewModelScope.launch {
+            account.collect { account ->
+                _state.value = RecordAccountState.RecordableData(account, isRecordable = account.quantity > 0 && account.category.isNotBlank())
+            }
+        }
+    }
+
     fun handleEvent(event: RecordAccountEvent) {
         when (event) {
             is RecordAccountEvent.InputDate -> {
-                account.value = account.value.copy(date = LocalDate.parse(event.date))
+                account.value = account.value.copy(date = LocalDateTime.ofInstant(Instant.ofEpochMilli(event.date), ZoneId.systemDefault()).toLocalDate())
             }
             is RecordAccountEvent.InputQuantity -> {
                 account.value = account.value.copy(quantity = event.quantity.toIntOrNull() ?: 0)
@@ -53,10 +64,13 @@ class RecordAccountViewModel @Inject constructor(
     }
 
     fun getAccount(id: Int) {
-        if (id < 1) return
+        if (id < 1) {
+            _state.value = RecordAccountState.RecordableData(account.value, false)
+            return
+        }
         viewModelScope.launch {
             val account = useCase.getAccount(id)
-            _state.value = RecordAccountState.Fetched(account)
+            _state.value = RecordAccountState.RecordableData(account, true)
         }
     }
 
