@@ -61,7 +61,7 @@ class RecordAccountDialog : DialogFragment(R.layout.dialog_record_account) {
                 }
                 is RecordAccountState.RecordableData -> {
                     binding.toolBar.menu.findItem(R.id.menu_done).isEnabled = state.isRecordable
-                    datePickerBuilder.setSelection(state.account.date.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli())
+                    datePickerBuilder.setSelection(state.account.date.atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli())
                     binding.dateForm.setText(state.account.date.toString())
                     binding.quantityForm.setText(state.account.quantity.toString())
                     binding.categoryForm.setText(state.account.category)
