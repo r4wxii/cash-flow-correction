@@ -37,7 +37,7 @@ class RecordAccountViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            account.collect { account ->
+            account.drop(1).collect { account ->
                 _state.value = RecordAccountState.RecordableData(account, isRecordable = account.quantity > 0 && account.category.isNotBlank())
             }
         }
@@ -64,13 +64,9 @@ class RecordAccountViewModel @Inject constructor(
     }
 
     fun getAccount(id: Int) {
-        if (id < 1) {
-            _state.value = RecordAccountState.RecordableData(account.value, false)
-            return
-        }
+        if (id < 1) return
         viewModelScope.launch {
-            val account = useCase.getAccount(id)
-            _state.value = RecordAccountState.RecordableData(account, true)
+            account.value = useCase.getAccount(id)
         }
     }
 

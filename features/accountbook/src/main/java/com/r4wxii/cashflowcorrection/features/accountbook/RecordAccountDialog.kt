@@ -56,7 +56,6 @@ class RecordAccountDialog : DialogFragment(R.layout.dialog_record_account) {
         viewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is RecordAccountState.Init -> {
-                    binding.toolBar.menu.findItem(R.id.menu_done).isEnabled = false
                     datePickerBuilder.setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                 }
                 is RecordAccountState.RecordableData -> {
