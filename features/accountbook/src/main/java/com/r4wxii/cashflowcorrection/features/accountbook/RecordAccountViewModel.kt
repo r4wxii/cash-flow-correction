@@ -14,8 +14,8 @@ import java.time.temporal.TemporalAccessor
 import javax.inject.Inject
 
 sealed class RecordAccountState {
-    object Init : RecordAccountState()
-    data class RecordableData(val account: Account, val isRecordable: Boolean) : RecordAccountState()
+    data class Fetched(val account: Account) : RecordAccountState()
+    data class RecordableData(val isRecordable: Boolean) : RecordAccountState()
 }
 
 sealed class RecordAccountEvent {
@@ -31,14 +31,14 @@ class RecordAccountViewModel @Inject constructor(
     private val useCase: AccountUseCase
 ) : ViewModel() {
     private val _state: MutableStateFlow<RecordAccountState> =
-        MutableStateFlow(RecordAccountState.Init)
+        MutableStateFlow(RecordAccountState.RecordableData(false))
     val state: LiveData<RecordAccountState> = _state.asLiveData()
     val account = MutableStateFlow(Account.empty())
 
     init {
         viewModelScope.launch {
-            account.drop(1).collect { account ->
-                _state.value = RecordAccountState.RecordableData(account, isRecordable = account.quantity > 0 && account.category.isNotBlank())
+            account.collect { account ->
+                _state.value = RecordAccountState.RecordableData(account.quantity > 0 && account.category.isNotBlank())
             }
         }
     }
@@ -67,11 +67,12 @@ class RecordAccountViewModel @Inject constructor(
         if (id < 1) return
         viewModelScope.launch {
             account.value = useCase.getAccount(id)
+            _state.value = RecordAccountState.Fetched(account.value)
         }
     }
 
     fun saveAccount() {
-        if (_state.value is RecordAccountState.RecordableData) {
+        if (_state.value is RecordAccountState.Fetched || _state.value is RecordAccountState.RecordableData) {
             viewModelScope.launch {
                 useCase.insert(account.value)
             }

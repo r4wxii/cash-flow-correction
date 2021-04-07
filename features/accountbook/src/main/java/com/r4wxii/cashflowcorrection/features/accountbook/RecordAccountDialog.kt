@@ -55,11 +55,8 @@ class RecordAccountDialog : DialogFragment(R.layout.dialog_record_account) {
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is RecordAccountState.Init -> {
-                    datePickerBuilder.setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                }
-                is RecordAccountState.RecordableData -> {
-                    binding.toolBar.menu.findItem(R.id.menu_done).isEnabled = state.isRecordable
+                is RecordAccountState.Fetched -> {
+                    binding.toolBar.menu.findItem(R.id.menu_done).isEnabled = true
                     datePickerBuilder.setSelection(state.account.date.atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli())
                     binding.dateForm.setText(state.account.date.toString())
                     binding.quantityForm.setText(state.account.quantity.toString())
@@ -67,10 +64,12 @@ class RecordAccountDialog : DialogFragment(R.layout.dialog_record_account) {
                     binding.subCategoryForm.setText(state.account.subCategory)
                     binding.commentForm.setText(state.account.comment)
                 }
+                is RecordAccountState.RecordableData -> binding.toolBar.menu.findItem(R.id.menu_done).isEnabled = state.isRecordable
             }
         }
 
         binding.dateForm.inputType = InputType.TYPE_NULL
+        datePickerBuilder.setSelection(MaterialDatePicker.todayInUtcMilliseconds())
         binding.dateForm.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 val datePicker = datePickerBuilder.build()
